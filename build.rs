@@ -6,8 +6,11 @@ fn main() -> Result<()> {
 
     prost_build::compile_protos(
         &["proto/common.proto", "proto/dex_trade_event.proto"],
-        &["proto/"],          // import 搜索路径
+        &["proto/"], // import 搜索路径
     )?;
-    println!("cargo:warning=OUT_DIR={}", std::env::var("OUT_DIR").unwrap());
+    println!(
+        "cargo:warning=OUT_DIR={}",
+        std::env::var("OUT_DIR").unwrap()
+    );
     Ok(())
 }
