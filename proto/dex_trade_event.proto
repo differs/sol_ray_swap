@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package io.blockchain.v1.dex.trade;
+
+import "common.proto";
+
+message TradeEvents {
+  repeated TradeEvent events = 1;
+}
+
+message Trade {
+  // tokens
+  string token_a_address = 1;
+  string token_b_address = 2;
+
+  // user accounts
+  string user_a_token_account_address = 3;
+  string user_a_account_owner_address = 4;
+  string user_b_token_account_address = 5;
+  string user_b_account_owner_address = 6;
+  string user_a_amount = 7;
+  string user_b_amount = 8;
+  string user_a_pre_amount = 9;
+  string user_a_post_amount = 10;
+  string user_b_pre_amount = 11;
+  string user_b_post_amount = 12;
+
+  // tag
+  bool was_original_direction = 13;
+
+  // pool
+  string pool_address = 200;
+  string vault_a = 201;
+  string vault_b = 202;
+  string vault_a_owner_address = 203;
+  string vault_b_owner_address = 204;
+  string vault_a_amount = 205;
+  string vault_b_amount = 206;
+  string vault_a_pre_amount = 207;
+  string vault_b_pre_amount = 208;
+  string vault_a_post_amount = 209;
+  string vault_b_post_amount = 210;
+
+  // pool config
+  string pool_config_address = 230;
+}
+
+message BondingCurve {
+  string virtual_quote_reserves = 1;
+  string virtual_token_reserves = 2;
+  string real_quote_reserves = 3;
+  string real_token_reserves = 4;
+}
+
+message TradeEvent {
+  io.chainstream.v1.common.Instruction instruction = 1;
+  io.chainstream.v1.common.Block block = 2;
+  io.chainstream.v1.common.Transaction transaction = 3;
+  io.chainstream.v1.common.DApp d_app = 4;
+
+  Trade trade = 100;
+  BondingCurve bonding_curve = 110;
+}
+
+

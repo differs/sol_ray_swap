@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package io.chainstream.v1.common;
+
+message Block {
+  int64 timestamp = 1;
+  string hash = 2;
+  uint64 height = 3;
+  uint64 slot = 4;
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_SUCCESS = 1;
+  STATUS_FAILED = 2;
+}
+
+message Transaction {
+  uint64 fee = 1;
+  string fee_payer = 2;
+  uint32 index = 3;
+  string signature = 4;
+  string signer = 5;
+  Status status = 6;
+}
+
+message DApp {
+  string program_address = 1;
+  string inner_program_address = 2;
+  Chain chain = 3;
+}
+
+message Instruction {
+  uint32 index = 1;
+  bool is_inner_instruction = 2;
+  uint32 inner_instruction_index = 3;
+  string type = 4;
+}
+
+enum Chain {
+  CHAIN_UNSPECIFIED = 0;
+  CHAIN_SOLANA = 1;
+  CHAIN_ETHEREUM = 2;
+  CHAIN_BSC = 3;
+}

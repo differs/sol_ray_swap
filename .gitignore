@@ -1,0 +1,32 @@
+# substreams auth file
+.substreams.env
+
+# Compiled source files
+target/
+
+# Sink data when running any sinker
+sink-data/
+
+# The spkg packed by the subtreams cli
+*.spkg
+
+# IDE & project settings
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+
+# Env files
+.env
+.env.*
+
+# Logs & temp files
+*.log
+*.tmp
+tmp/
+.cache/
+
+# Rust backups
+**/*.rs.bk

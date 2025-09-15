@@ -1,0 +1,29 @@
+specVersion: v0.1.0
+package:
+  name: sol_ray_swap
+  version: v0.1.0
+  url: https://github.com/example/sol_ray_swap
+  description: Substreams for extracting Raydium swap events from Solana blockchain
+network: mainnet
+protobuf:
+  files:
+    - common.proto
+    - dex_trade_event.proto
+  importPaths:
+    - proto
+  excludePaths:
+    - google
+    - sf/substreams
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: target/wasm32-unknown-unknown/release/sol_ray_swap.wasm
+modules:
+  - name: map_ray_swap
+    kind: map
+    binary: default
+    initialBlock: 200000000
+    inputs:
+      - source: sf.solana.type.v1.Block
+    output:
+      type: proto:io.blockchain.v1.dex.trade.TradeEvents
